@@ -38,6 +38,7 @@ func GetAllKvPairs(host string, keyPrefix string)*ConsulKvs{
 		v.Value = string(dec)
 		*newKvs = append(*newKvs, v)
 	}
+	fmt.Println(newKvs)
 	return newKvs
 }
 
