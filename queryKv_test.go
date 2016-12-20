@@ -6,6 +6,6 @@ import (
 )
 
 func Test_GetAllKvJson(t *testing.T){
-	jstring := GetAllKvJson("127.0.0.1:8500", "HttpServerAuth/")
+	jstring := GetAllKvJson("127.0.0.1:8500", "test/")
 	fmt.Println(jstring)
 }
