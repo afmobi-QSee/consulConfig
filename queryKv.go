@@ -47,9 +47,16 @@ func GetAllKvJson(host, keyPrefix string) (string) {
 	ckvs := GetAllKvPairs(host, keyPrefix)
 	kvMap := map[string]interface{}{}
 	for _, v := range *ckvs {
-		if strings.Contains(v.Value, "\n") {
-			arrayValue := strings.Split(v.Value, "\n")
-			kvMap[v.Key] = arrayValue
+		if strings.Contains(v.Value, "--: ") {
+			newArray := []string{}
+			arrayValue := strings.Split(v.Value, "--: ")
+			for _, a := range arrayValue {
+				a = strings.Replace(a, "\n", "", -1)
+				if a != "" {
+					newArray = append(newArray, a)
+				}
+			}
+			kvMap[v.Key] = newArray
 		} else {
 			kvMap[v.Key] = v.Value
 		}
