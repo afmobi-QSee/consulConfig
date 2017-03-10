@@ -38,7 +38,7 @@ func NewConsulConfig(url, serviceName, ip string, port int, tag []string) *Consu
 
 func (this *ConsulConfig)Register() error{
 	check := &Check{Tcp:this.Ip + ":" + strconv.Itoa(this.Port), Interval:"10s", DeregisterCriticalServiceAfter:"1m"}
-	service := &Service{Id:this.ServiceName + this.Ip + strconv.Itoa(this.Port), Name:this.ServiceName, Address:this.Ip, Port:this.Port, Tags: this.Tag, Check:[]Check{*check}}
+	service := &Service{Id:this.ServiceName + "_" + this.Ip + "_" + strconv.Itoa(this.Port), Name:this.ServiceName, Address:this.Ip, Port:this.Port, Tags: this.Tag, Check:[]Check{*check}}
 	jbody, _ := json.Marshal(service)
 	client := &http.Client{}
 	fmt.Print("PUT ", "http://" + this.Url + "/v1/agent/service/register ", string(jbody))
