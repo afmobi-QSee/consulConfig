@@ -1,6 +1,6 @@
 # consulConfig
 
-go get -u github.com/afmobi-QSee/consulConfig
+go get -u gopkg.in/afmobi-QSee/consulConfig.v1
 
 key list_value 格式
 --: value1
